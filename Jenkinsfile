@@ -21,7 +21,6 @@ pipeline {
 		}
 		}
 
-
 		stage('Run Tests') {
 			parallel {
 				stage('Backend Tests') {
@@ -34,6 +33,13 @@ pipeline {
 				}
 			}
 		}
+		stage('Deploy') {
+			when {
+			expression { env.GIT_BRANCH == 'origin/main' }
+			}
+			steps {
+			echo 'Deploying...'}
+			}
 
 
 
